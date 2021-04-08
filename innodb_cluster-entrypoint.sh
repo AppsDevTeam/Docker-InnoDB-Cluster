@@ -133,11 +133,7 @@ else
 
         GR_ARGS="$GR_ARGS --group_replication_group_name=$GROUP_NAME --group_replication_group_seeds=$GROUP_SEEDS"
 
-        # You can use --hostname=<hostname> for each container or use the auto-generated one; 
-        # we'll need to use the hostname for group_replication_local_address
-        HOSTNAME=$(hostname)
-
-	GR_ARGS="$GR_ARGS --group_replication_local_address=$HOSTNAME:6606"
+	GR_ARGS="$GR_ARGS --group_replication_local_address=$LOCAL_ADDRESS:6606"
 
 	if [ ! -d "$DATADIR/mysql" ]; then
 		if [ -z "$MYSQL_ROOT_PASSWORD" -a -z "$MYSQL_ALLOW_EMPTY_PASSWORD" -a -z "$MYSQL_RANDOM_ROOT_PASSWORD" ]; then
