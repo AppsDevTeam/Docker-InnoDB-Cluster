@@ -96,14 +96,14 @@ else
 	# If no group name has been specified, let's see if one is in the config files
 	[ -z "$GROUP_NAME" ] && GROUP_NAME="$(/usr/bin/my_print_defaults mysqld 2>/dev/null | awk -F "=" '$1 ~ /--[loose]*[_-]*group[_-]+replication[_-]+group[_-]+name/ { print $2; exit }')"
 
-	GR_ARGS="--plugin-load=group_replication.so --group_replication_start_on_boot=ON --super_read_only=ON"
+	GR_ARGS="--plugin-load=group_replication.so --group-replication-start-on-boot=ON --super-read-only=ON"
 
 	if [ ! -z "$BOOTSTRAP" ]; then
 		# Let's not blindly bootstrap the cluster if the datadir already exists
 		# In that case we've likely restarted an existing container or are rebootstraping
 		# the entire cluster (when the datadir exists and there are no seeds specified)
 		if [ ! -d "$DATADIR/mysql" ] || [ -z "$GROUP_SEEDS" ]; then
-			GR_ARGS="$GR_ARGS --group_replication_bootstrap_group=ON"
+			GR_ARGS="$GR_ARGS --group-replication-bootstrap-group=ON"
 
 			# If a group name hasn't been specified anywhere, let's finally auto generate one
 			if [ -z "$GROUP_NAME" ]; then
@@ -131,9 +131,9 @@ else
         	exit 1
 	fi
 
-        GR_ARGS="$GR_ARGS --group_replication_group_name=$GROUP_NAME --group_replication_group_seeds=$GROUP_SEEDS"
+	GR_ARGS="$GR_ARGS --group-replication-group-name=$GROUP_NAME --group-replication-group-seeds=$GROUP_SEEDS"
 
-	GR_ARGS="$GR_ARGS --group_replication_local_address=$LOCAL_ADDRESS:6606"
+	GR_ARGS="$GR_ARGS --group-replication-local-address=$LOCAL_ADDRESS:6606"
 
 	if [ ! -d "$DATADIR/mysql" ]; then
 		if [ -z "$MYSQL_ROOT_PASSWORD" -a -z "$MYSQL_ALLOW_EMPTY_PASSWORD" -a -z "$MYSQL_RANDOM_ROOT_PASSWORD" ]; then
