@@ -175,6 +175,8 @@ else
 			-- What's done in this file shouldn't be replicated
 			SET @@SESSION.SQL_LOG_BIN=0;
 			DELETE FROM mysql.user WHERE user NOT IN ('mysql.infoschema', 'mysql.session', 'mysql.sys', 'root') OR host NOT IN ('localhost');
+			CREATE USER 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}' ;
+			GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION ;
 			CREATE USER 'healthchecker'@'localhost' IDENTIFIED BY 'healthcheckpass';
 			ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 			FLUSH PRIVILEGES ;
