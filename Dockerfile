@@ -1,7 +1,7 @@
 FROM oraclelinux:8-slim
-ARG MYSQLD_URL=https://repo.mysql.com/yum/mysql-8.0-community/docker/x86_64/mysql-community-server-minimal-8.0.23-1.el7.x86_64.rpm
-ARG ROUTER_URL=https://repo.mysql.com/yum/mysql-tools-community/el/8/x86_64/mysql-router-community-8.0.23-1.el8.x86_64.rpm
-ARG SHELL_URL=https://repo.mysql.com/yum/mysql-tools-community/el/8/x86_64/mysql-shell-8.0.23-1.el8.x86_64.rpm
+ARG MYSQLD_URL=https://repo.mysql.com/yum/mysql-8.0-community/docker/el/8/x86_64/mysql-community-server-minimal-8.0.24-1.el8.x86_64.rpm
+ARG ROUTER_URL=https://repo.mysql.com/yum/mysql-tools-community/el/8/x86_64/mysql-router-community-8.0.24-1.el8.x86_64.rpm
+ARG SHELL_URL=https://repo.mysql.com/yum/mysql-tools-community/el/8/x86_64/mysql-shell-8.0.24-1.el8.x86_64.rpm
 
 # Install server
 RUN rpmkeys --import http://repo.mysql.com/RPM-GPG-KEY-mysql \
