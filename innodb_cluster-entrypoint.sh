@@ -133,7 +133,7 @@ else
 
 	GR_ARGS="$GR_ARGS --group-replication-group-name=$GROUP_NAME --group-replication-group-seeds=$GROUP_SEEDS"
 
-	GR_ARGS="$GR_ARGS --group-replication-local-address=$LOCAL_ADDRESS:6606"
+	GR_ARGS="$GR_ARGS --group-replication-local-address=$LOCAL_ADDRESS:6606 --report-host=$LOCAL_ADDRESS"
 
 	if [ ! -d "$DATADIR/mysql" ]; then
 		if [ -z "$MYSQL_ROOT_PASSWORD" -a -z "$MYSQL_ALLOW_EMPTY_PASSWORD" -a -z "$MYSQL_RANDOM_ROOT_PASSWORD" ]; then
